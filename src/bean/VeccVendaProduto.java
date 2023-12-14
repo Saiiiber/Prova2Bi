@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/11/2023 10:03:16 by Hibernate Tools 4.3.1
+// Generated 07/12/2023 14:36:22 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -23,19 +23,14 @@ public class VeccVendaProduto  implements java.io.Serializable {
      private int veccIdvendaProduto;
      private VeccProduto veccProduto;
      private VeccVenda veccVenda;
-     private String veccQuantidade;
-     private String veccValor;
+     private int veccQuantidade;
+     private int veccValor;
 
     public VeccVendaProduto() {
+    
     }
-
-	
-    public VeccVendaProduto(int veccIdvendaProduto, VeccProduto veccProduto, VeccVenda veccVenda) {
-        this.veccIdvendaProduto = veccIdvendaProduto;
-        this.veccProduto = veccProduto;
-        this.veccVenda = veccVenda;
-    }
-    public VeccVendaProduto(int veccIdvendaProduto, VeccProduto veccProduto, VeccVenda veccVenda, String veccQuantidade, String veccValor) {
+     
+    public VeccVendaProduto(int veccIdvendaProduto, VeccProduto veccProduto, VeccVenda veccVenda, int veccQuantidade, int veccValor) {
        this.veccIdvendaProduto = veccIdvendaProduto;
        this.veccProduto = veccProduto;
        this.veccVenda = veccVenda;
@@ -76,22 +71,22 @@ public class VeccVendaProduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_quantidade", length=45)
-    public String getVeccQuantidade() {
+    @Column(name="vecc_quantidade", nullable=false)
+    public int getVeccQuantidade() {
         return this.veccQuantidade;
     }
     
-    public void setVeccQuantidade(String veccQuantidade) {
+    public void setVeccQuantidade(int veccQuantidade) {
         this.veccQuantidade = veccQuantidade;
     }
 
     
-    @Column(name="vecc_valor", length=45)
-    public String getVeccValor() {
+    @Column(name="vecc_valor", nullable=false)
+    public int getVeccValor() {
         return this.veccValor;
     }
     
-    public void setVeccValor(String veccValor) {
+    public void setVeccValor(int veccValor) {
         this.veccValor = veccValor;
     }
 

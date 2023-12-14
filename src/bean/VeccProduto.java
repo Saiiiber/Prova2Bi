@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/11/2023 10:03:16 by Hibernate Tools 4.3.1
+// Generated 07/12/2023 14:36:22 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -25,31 +25,26 @@ public class VeccProduto  implements java.io.Serializable {
 
      private int idveccProduto;
      private VeccVendedor veccVendedor;
-     private String veccCodigo;
+     private int veccCodigo;
      private String veccNome;
-     private String veccQuantidade;
+     private int veccQuantidade;
      private String veccDescricao;
-     private String veccPreco;
-
+     private double veccPreco;
 
     public VeccProduto() {
     }
 
 	
-    public VeccProduto(int idveccProduto, VeccVendedor veccVendedor) {
+    public VeccProduto(int idveccProduto, VeccVendedor veccVendedor, int veccCodigo, String veccNome, int veccQuantidade, String veccDescricao, double veccPreco) {
         this.idveccProduto = idveccProduto;
         this.veccVendedor = veccVendedor;
+        this.veccCodigo = veccCodigo;
+        this.veccNome = veccNome;
+        this.veccQuantidade = veccQuantidade;
+        this.veccDescricao = veccDescricao;
+        this.veccPreco = veccPreco;
     }
-    public VeccProduto(int idveccProduto, VeccVendedor veccVendedor, String veccCodigo, String veccNome, String veccQuantidade, String veccDescricao, String veccPreco) {
-       this.idveccProduto = idveccProduto;
-       this.veccVendedor = veccVendedor;
-       this.veccCodigo = veccCodigo;
-       this.veccNome = veccNome;
-       this.veccQuantidade = veccQuantidade;
-       this.veccDescricao = veccDescricao;
-       this.veccPreco = veccPreco;
 
-    }
    
      @Id 
 
@@ -74,17 +69,17 @@ public class VeccProduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_codigo", length=45)
-    public String getVeccCodigo() {
+    @Column(name="vecc_codigo", nullable=false)
+    public int getVeccCodigo() {
         return this.veccCodigo;
     }
     
-    public void setVeccCodigo(String veccCodigo) {
+    public void setVeccCodigo(int veccCodigo) {
         this.veccCodigo = veccCodigo;
     }
 
     
-    @Column(name="vecc_nome", length=45)
+    @Column(name="vecc_nome", nullable=false, length=45)
     public String getVeccNome() {
         return this.veccNome;
     }
@@ -94,17 +89,17 @@ public class VeccProduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_quantidade", length=45)
-    public String getVeccQuantidade() {
+    @Column(name="vecc_quantidade", nullable=false)
+    public int getVeccQuantidade() {
         return this.veccQuantidade;
     }
     
-    public void setVeccQuantidade(String veccQuantidade) {
+    public void setVeccQuantidade(int veccQuantidade) {
         this.veccQuantidade = veccQuantidade;
     }
 
     
-    @Column(name="vecc_descricao", length=45)
+    @Column(name="vecc_descricao", nullable=false, length=45)
     public String getVeccDescricao() {
         return this.veccDescricao;
     }
@@ -114,14 +109,17 @@ public class VeccProduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_preco", length=45)
-    public String getVeccPreco() {
+    @Column(name="vecc_preco", nullable=false, precision=22, scale=0)
+    public double getVeccPreco() {
         return this.veccPreco;
     }
     
-    public void setVeccPreco(String veccPreco) {
+    public void setVeccPreco(double veccPreco) {
         this.veccPreco = veccPreco;
     }
+
+
+
 }
 
 

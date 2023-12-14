@@ -16,7 +16,7 @@ import org.hibernate.criterion.Restrictions;
  * @author u10549640177
  */
 public class VendaProdutoDAO extends DAO_Abstract {
-    public VendaProdutoDAO(){}
+    
         
     @Override
     public void insert(Object object) {
@@ -61,10 +61,5 @@ public class VendaProdutoDAO extends DAO_Abstract {
         session.getTransaction().commit();
         return(ArrayList) Lista;
     }
-    
-    public static void main(String[] args) {
-        VendaProdutoDAO vendaprodutoDAO = new VendaProdutoDAO();
-    }
-    
 }
 

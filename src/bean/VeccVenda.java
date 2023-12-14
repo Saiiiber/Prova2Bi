@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/11/2023 10:03:16 by Hibernate Tools 4.3.1
+// Generated 07/12/2023 14:36:22 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -24,28 +24,24 @@ public class VeccVenda  implements java.io.Serializable {
 
 
      private int veccIdvenda;
+     private VeccCliente veccCliente;
      private VeccVendedor veccVendedor;
-     private String veccDestinatario;
      private String veccEndereco;
      private String veccProduto;
-     private String veccPreco;
+     private double veccPreco;
+
 
     public VeccVenda() {
     }
 
 	
-    public VeccVenda(int veccIdvenda, VeccVendedor veccVendedor) {
+    public VeccVenda(int veccIdvenda, VeccCliente veccCliente, VeccVendedor veccVendedor, String veccEndereco, String veccProduto, double veccPreco) {
         this.veccIdvenda = veccIdvenda;
+        this.veccCliente = veccCliente;
         this.veccVendedor = veccVendedor;
-    }
-    public VeccVenda(int veccIdvenda, VeccVendedor veccVendedor, String veccDestinatario, String veccEndereco, String veccProduto, String veccPreco) {
-       this.veccIdvenda = veccIdvenda;
-       this.veccVendedor = veccVendedor;
-       this.veccDestinatario = veccDestinatario;
-       this.veccEndereco = veccEndereco;
-       this.veccProduto = veccProduto;
-       this.veccPreco = veccPreco;
-
+        this.veccEndereco = veccEndereco;
+        this.veccProduto = veccProduto;
+        this.veccPreco = veccPreco;
     }
    
      @Id 
@@ -61,6 +57,16 @@ public class VeccVenda  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="vecc_cliente", nullable=false)
+    public VeccCliente getVeccCliente() {
+        return this.veccCliente;
+    }
+    
+    public void setVeccCliente(VeccCliente veccCliente) {
+        this.veccCliente = veccCliente;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="vecc_fk_vendedor", nullable=false)
     public VeccVendedor getVeccVendedor() {
         return this.veccVendedor;
@@ -71,17 +77,7 @@ public class VeccVenda  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_destinatario", length=45)
-    public String getVeccDestinatario() {
-        return this.veccDestinatario;
-    }
-    
-    public void setVeccDestinatario(String veccDestinatario) {
-        this.veccDestinatario = veccDestinatario;
-    }
-
-    
-    @Column(name="vecc_endereco", length=45)
+    @Column(name="vecc_endereco", nullable=false, length=45)
     public String getVeccEndereco() {
         return this.veccEndereco;
     }
@@ -91,7 +87,7 @@ public class VeccVenda  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_produto", length=45)
+    @Column(name="vecc_produto", nullable=false, length=45)
     public String getVeccProduto() {
         return this.veccProduto;
     }
@@ -101,14 +97,18 @@ public class VeccVenda  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_preco", length=45)
-    public String getVeccPreco() {
+    @Column(name="vecc_preco", nullable=false, precision=22, scale=0)
+    public double getVeccPreco() {
         return this.veccPreco;
     }
     
-    public void setVeccPreco(String veccPreco) {
+    public void setVeccPreco(double veccPreco) {
         this.veccPreco = veccPreco;
     }
+
+
+
+
 }
 
 

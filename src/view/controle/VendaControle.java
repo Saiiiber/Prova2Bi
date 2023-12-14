@@ -5,6 +5,8 @@
  */
 package view.controle;
 import bean.VeccVenda;
+import bean.VeccVendaProduto;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 /**
@@ -16,62 +18,75 @@ public class VendaControle extends AbstractTableModel {
    private List lista;
 
 
-   public void setLista(List lista){
-       this.lista = lista;
-   }
-   public void setList(List lista){
-this.lista=lista;
-}
+public void setList(List lista) {
+         this.lista = lista;
+       this.fireTableDataChanged();
+    }
    
 public VeccVenda getbean(int linha){
 return (VeccVenda) lista.get(linha);
 }
+   public void addBean(VeccVenda veccVenda){
+    lista.add(veccVenda);
+    this.fireTableDataChanged();
+}
    
+public void removeBean(int index){
+    lista.remove(index);
+    this.fireTableDataChanged();
+}
+
+public void updateBean(int index, VeccVenda veccVenda){
+    lista.set(index, veccVenda );
+    this.fireTableDataChanged();
+}
     @Override
     public int getRowCount() {
-        return 4;
+        return lista.size();
     }
 
     @Override
     public int getColumnCount() {
-      return lista.size();
+      return 4;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-         VeccVenda venda= (VeccVenda) lista.get(rowIndex);
-      if (columnIndex == 0) {
+    public Object getValueAt(int row, int column) {
+         VeccVenda venda= (VeccVenda) lista.get(row);
+      if (column == 0) {
              return venda.getVeccIdvenda();
         }
-        if (columnIndex == 1) {
+        if (column == 1) {
              return venda.getVeccVendedor();
         }
-        if (columnIndex == 2) {
-              return venda.getVeccDestinatario();
+        if (column == 2) {
+              return venda.getVeccCliente();
         }
-        if (columnIndex == 3) {
+        if (column == 3) {
               return venda.getVeccEndereco();
         
         }
-       return null;
+       return "";
     }
 
     @Override
-    public String getColumnName(int columnIndex){
-        if (columnIndex == 0) {
+    public String getColumnName(int column){
+        if (column == 0) {
              return "ID";
         }
-        if (columnIndex == 1) {
+        if (column == 1) {
              return "Vendedor";
         }
-        if (columnIndex == 2) {
-             return "Destinatario";
+        if (column == 2) {
+             return "Cliente";
         }
-        if (columnIndex == 3) {
+        if (column == 3) {
              return "Endereco";
         }
        
-    return null;
+    return "";
     }
+
+   
 }
 

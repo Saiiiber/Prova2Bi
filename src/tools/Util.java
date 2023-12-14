@@ -65,7 +65,7 @@ public class Util {
      public static double strDouble(String cad) {
         return Double.valueOf(cad);
     }
-      public static String doubleStr(String num) {
+      public static String doubleStr(double num) {
         return String.valueOf(num);
     }
       public static java.util.Date strData(String cad) {
@@ -77,8 +77,12 @@ public class Util {
         }
         return null;
     }
-      public static String dataStr(String data) {
+      public static String dataStr(java.util.Date data) {
           SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
         return formato.format(data);
+    }
+
+    public static boolean pergunta(String excluir) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

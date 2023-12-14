@@ -13,7 +13,6 @@ import org.hibernate.criterion.Restrictions;
  * @author u10549640177
  */
 public class ProdutoDAO extends DAO_Abstract {
-    public ProdutoDAO(){}
     
     @Override
     public void insert(Object object) {
@@ -56,11 +55,7 @@ public class ProdutoDAO extends DAO_Abstract {
         Criteria criteria = session.createCriteria(ProdutoDAO.class);
         List Lista = criteria.list();
         session.getTransaction().commit();
-        return(ArrayList) Lista;
-    }
-    
-    public static void main(String[] args) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
+        return Lista;
     }
     
 }

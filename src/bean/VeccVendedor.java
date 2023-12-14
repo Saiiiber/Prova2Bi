@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/11/2023 10:03:16 by Hibernate Tools 4.3.1
+// Generated 07/12/2023 14:36:22 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -28,24 +28,21 @@ public class VeccVendedor  implements java.io.Serializable {
      private String veccApelido;
      private String veccTelefone;
 
+
     public VeccVendedor() {
     }
 
 	
-    public VeccVendedor(int veccIdvendedor) {
-        this.veccIdvendedor = veccIdvendedor;
-    }
     public VeccVendedor(int veccIdvendedor, String veccNome, String veccCpf, String veccEndereco, String veccApelido, String veccTelefone) {
-       this.veccIdvendedor = veccIdvendedor;
-       this.veccNome = veccNome;
-       this.veccCpf = veccCpf;
-       this.veccEndereco = veccEndereco;
-       this.veccApelido = veccApelido;
-       this.veccTelefone = veccTelefone;
+        this.veccIdvendedor = veccIdvendedor;
+        this.veccNome = veccNome;
+        this.veccCpf = veccCpf;
+        this.veccEndereco = veccEndereco;
+        this.veccApelido = veccApelido;
+        this.veccTelefone = veccTelefone;
     }
    
      @Id 
-
     
     @Column(name="vecc_idvendedor", unique=true, nullable=false)
     public int getVeccIdvendedor() {
@@ -57,7 +54,7 @@ public class VeccVendedor  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_nome", length=45)
+    @Column(name="vecc_nome", nullable=false, length=45)
     public String getVeccNome() {
         return this.veccNome;
     }
@@ -67,7 +64,7 @@ public class VeccVendedor  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_cpf", length=45)
+    @Column(name="vecc_cpf", nullable=false, length=45)
     public String getVeccCpf() {
         return this.veccCpf;
     }
@@ -77,7 +74,7 @@ public class VeccVendedor  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_endereco", length=45)
+    @Column(name="vecc_endereco", nullable=false, length=45)
     public String getVeccEndereco() {
         return this.veccEndereco;
     }
@@ -87,7 +84,7 @@ public class VeccVendedor  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_apelido", length=45)
+    @Column(name="vecc_apelido", nullable=false, length=45)
     public String getVeccApelido() {
         return this.veccApelido;
     }
@@ -97,7 +94,7 @@ public class VeccVendedor  implements java.io.Serializable {
     }
 
     
-    @Column(name="vecc_telefone", length=45)
+    @Column(name="vecc_telefone", nullable=false, length=45)
     public String getVeccTelefone() {
         return this.veccTelefone;
     }
@@ -105,6 +102,7 @@ public class VeccVendedor  implements java.io.Serializable {
     public void setVeccTelefone(String veccTelefone) {
         this.veccTelefone = veccTelefone;
     }
+
 }
 
 

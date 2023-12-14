@@ -17,7 +17,7 @@ import view.IA.JDlgProdutoNovoIA;
  * @author u10549640177
  */
 public class JDlgProdutoNovo extends javax.swing.JDialog {
-JDlgProdutoNovoIA jDlgprodutoNovoIA;
+    public ProdutoControle produtoControle ;
 ProdutoControle controleProduto;
 ProdutoDAO produtoDAO;
 VeccProduto produto;
@@ -29,16 +29,16 @@ VeccProduto produto;
        initComponents();
        setLocationRelativeTo(null);
        setTitle("Produto");
-       jDlgprodutoNovoIA = new JDlgProdutoNovoIA(null, true);
-       controleProduto = new  ProdutoControle();
-       jDlgprodutoNovoIA = new JDlgProdutoNovoIA(null, true);
+       produtoControle = new ProdutoControle();
        produtoDAO = new ProdutoDAO();
        List lista = produtoDAO.listALL();
-        
-       controleProduto.setList(lista);
-        jTable1.setModel(controleProduto);
+       produtoControle.setList(lista);
+       jTable1.setModel(produtoControle);
+               
     }
-
+        public int getSelectedRow(){
+            return jTable1.getSelectedRowCount();
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +72,7 @@ VeccProduto produto;
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +81,7 @@ VeccProduto produto;
         });
         jPanel1.add(jBtnIncluir);
 
+        jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +90,7 @@ VeccProduto produto;
         });
         jPanel1.add(jBtnAlterar);
 
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,8 +118,9 @@ VeccProduto produto;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
-        jDlgprodutoNovoIA.setVisible(true);
-        jDlgprodutoNovoIA.setTitle("incluir");
+        JDlgProdutoNovoIA jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
+        jDlgProdutoNovoIA.setTitle("incluir");
+        jDlgProdutoNovoIA.setVisible(true);
         List lista = produtoDAO.listALL();
         
        controleProduto.setList(lista);
@@ -124,27 +128,39 @@ VeccProduto produto;
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        if( Util.pergunta("alterar?", "Pergunta")== JOptionPane.YES_OPTION){
-            this.dispose();
-            jDlgprodutoNovoIA.setVisible(true);
-            jDlgprodutoNovoIA.setTitle("Alterar");
+        int rowSel = jTable1.getSelectedRow();
+        if(rowSel == -1) {
+            Util.msg("Selecione um produto antes de altera-lo");
+        } else {
+            VeccProduto produto = produtoControle.getbean(rowSel);
+            JDlgProdutoNovoIA jDlgProdutoNovoIA = new JDlgProdutoNovoIA(null, true);
+            jDlgProdutoNovoIA.beanView(produto);
+            jDlgProdutoNovoIA.setTitle("Alterar");
+            jDlgProdutoNovoIA.setTelaAnterior(this);
+            jDlgProdutoNovoIA.setVisible(true);
+         List lista = produtoDAO.listALL();
+         produtoControle.setList(lista);
         }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if( Util.pergunta("excluir?", "Pergunta")== JOptionPane.YES_OPTION){
-             int a = jTable1.getSelectedRow();
-       
-       VeccProduto produto = controleProduto.getbean(a);       
-       ProdutoDAO produtoDAO = new ProdutoDAO();
-       produtoDAO.delete(produto);
-       List lista = produtoDAO.listALL();       
-       controleProduto.setList(lista);
-       Util.msg("Exclusão efetuada");   
-        } else{Util.msg("Exclusão cancelada"); }
+        int rowSel = jTable1.getSelectedRow();
+        if(rowSel == -1) {
+            Util.msg("Selecione um produto antes de exclui-lo");
+        } else {
+            if ((Util.pergunta("Excluir?")) == true) {
+                VeccProduto produto = produtoControle.getbean(rowSel);
+                ProdutoDAO produtoDAO = new ProdutoDAO();
+                produtoDAO.delete(produto);
+                Util.msg("Exclusão efetuada");
+         List lista = produtoDAO.listALL();
+         produtoControle.setList(lista);
+        } else {
+                Util.msg("Exlusão cancelada");
+            }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -196,4 +212,5 @@ VeccProduto produto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }

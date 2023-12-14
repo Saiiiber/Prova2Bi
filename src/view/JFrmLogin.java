@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class JFrmLogin extends javax.swing.JFrame {
  
- int Cont;
+
  
  
     /**
@@ -43,7 +43,7 @@ public class JFrmLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPwfSenha = new javax.swing.JPasswordField();
-        JTxtUsuario = new javax.swing.JTextField();
+        jTxtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jBtnEntrar = new javax.swing.JButton();
         jBtnCancelar = new javax.swing.JButton();
@@ -62,9 +62,9 @@ public class JFrmLogin extends javax.swing.JFrame {
             }
         });
 
-        JTxtUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jTxtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTxtUsuarioActionPerformed(evt);
+                jTxtUsuarioActionPerformed(evt);
             }
         });
 
@@ -92,7 +92,7 @@ public class JFrmLogin extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(JTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3))
                     .addComponent(jBtnEntrar))
                 .addGap(18, 18, 18)
@@ -118,7 +118,7 @@ public class JFrmLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPwfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnEntrar)
@@ -134,28 +134,25 @@ public class JFrmLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPwfSenhaActionPerformed
 
-    private void JTxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTxtUsuarioActionPerformed
+    private void jTxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTxtUsuarioActionPerformed
+    }//GEN-LAST:event_jTxtUsuarioActionPerformed
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
       UsuariosDAO usuariosDAO = new UsuariosDAO();
-         List lista = usuariosDAO.login(JTxtUsuario.getText(), jPwfSenha.getText());
-
-        if(Cont<3){ 
-        if (lista.get(0).equals(0)) { 
-            JFrmPrincipal1 jFrmPrincipal1 = new JFrmPrincipal1();
-            jFrmPrincipal1.setVisible(true) ;
-        
-       
-        this.dispose();         
-        }else{ 
+     
+    if (usuariosDAO.buscar("VeccNome", jTxtUsuario.getText()).size() != 0 
+            && 
+        usuariosDAO.buscar("VeccSenha", jPwfSenha.getText()).size() != 0){
+        this.dispose();
+        JOptionPane.showMessageDialog(this, "Acesso confirmado", "ACESSO", JOptionPane.INFORMATION_MESSAGE);
+        JFrmPrincipal1 jFrmPrincipal1 = new JFrmPrincipal1();
+        jFrmPrincipal1.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Acesso recusado","RRCUSADO", JOptionPane.ERROR_MESSAGE);
+            }
            
-          JOptionPane.showMessageDialog(null, "Senha ou Usuario incorretas");
-         Cont = Cont+1;
-        }}else{
-             JOptionPane.showMessageDialog(null, "Numeros de tentativas exedidas");
-            System.exit(0);}
+          
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
@@ -206,7 +203,6 @@ public class JFrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTxtUsuario;
     private javax.swing.JButton jBtnCancelar;
     private javax.swing.JButton jBtnEntrar;
     private javax.swing.JLabel jLabel1;
@@ -214,5 +210,6 @@ public class JFrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField jPwfSenha;
+    private javax.swing.JTextField jTxtUsuario;
     // End of variables declaration//GEN-END:variables
 }

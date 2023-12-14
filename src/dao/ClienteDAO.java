@@ -24,27 +24,27 @@ public  ClienteDAO(){
 
      @Override
     public void insert(Object object) {
-       session.beginTransaction();
-session.save(object);
-session.getTransaction().commit();
+        session.beginTransaction();
+        session.save(object);
+        session.getTransaction().commit();
     }
     
     @Override
     public void update(Object object) {
       session.beginTransaction();
-        session.flush();
-session.clear();
+      session.flush();
+      session.clear();
       session.update(object);
-       session.getTransaction().commit();
+      session.getTransaction().commit();
     }
 
     @Override
     public void delete(Object object) {
-   session.beginTransaction();
-        session.flush();
-session.clear();
-       session.delete(object);
-       session.getTransaction().commit();
+     session.beginTransaction();
+     session.flush();
+     session.clear();
+     session.delete(object);
+     session.getTransaction().commit();
     }
 
     @Override

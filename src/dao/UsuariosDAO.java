@@ -100,5 +100,14 @@ public class UsuariosDAO extends DAO_Abstract{
         session.getTransaction().commit();
     return lista;
      
-    }    
+    }  
+     
+     public List buscar(String cmp, String valor){
+         session.beginTransaction();
+         Criteria criteria = session.createCriteria(VeccUsuario.class);
+         criteria.add(Restrictions.eq(cmp, valor));
+         List lista = criteria.list();
+         session.getTransaction().commit();
+         return lista;
+     }
 }
